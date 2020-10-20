@@ -5,6 +5,10 @@ Adds support for [Pylance](https://github.com/microsoft/pylance-release) to
 
 ## Installation
 
+First install the [Pylance
+extension](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+from the VS Code marketplace.
+
 ```vim
 " Using vim-plug
 Plug 'lithammer/nvim-pylance'
@@ -20,3 +24,7 @@ pylance.setup()
 nvim_lsp.pylance.setup()
 EOF
 ```
+
+## Upgrade
+
+Upgrade Pylance via VS Code.
