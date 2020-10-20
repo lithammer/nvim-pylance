@@ -21,7 +21,17 @@ local nvim_lsp = require('nvim_lsp')
 local pylance = require('pylance')
 
 pylance.setup()
-nvim_lsp.pylance.setup()
+nvim_lsp.pylance.setup({
+  -- https://github.com/microsoft/pylance-release#settings-and-customization
+  settings = {
+    python = {
+      analysis = {
+        indexing = true,
+        typeCheckingMode = 'basic',
+      }
+    }
+  }
+})
 EOF
 ```
 
