@@ -15,8 +15,9 @@ Plug 'lithammer/nvim-pylance'
 
 " Using vim-packager
 call packager#add('lithammer/nvim-pylance')
+```
 
-lua << EOF
+```lua
 local nvim_lsp = require('nvim_lsp')
 local pylance = require('pylance')
 
@@ -32,7 +33,6 @@ nvim_lsp.pylance.setup({
     }
   }
 })
-EOF
 ```
 
 ## Upgrade
