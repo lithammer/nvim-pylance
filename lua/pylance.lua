@@ -18,7 +18,7 @@ local function init(_messages, _)
 end
 
 local function ensure_init(id)
-  require('lsp-status').util.ensure_init(messages, id, 'pylance')
+  require('lsp-status/util').ensure_init(messages, id, 'pylance')
 end
 
 -- XXX: Seems like these callbacks are never called.
