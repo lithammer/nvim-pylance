@@ -26,8 +26,9 @@ a stand-alone fashion as you will only get prompted with this license notice:
 > above), provide the software as a stand-alone offering for others to use, or
 > transfer the software or this agreement to any third party.
 
-Meanwhile you run the open-source language server
-[Pyright](https://github.com/microsoft/pyright) which Pylance is built on:
+Meanwhile you can use the open-source language server
+[Pyright](https://github.com/microsoft/pyright) instead, which Pylance is built
+on:
 
 ```console
 $ npm install -g pyright
