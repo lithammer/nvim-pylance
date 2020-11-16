@@ -21,8 +21,8 @@ local function ensure_init(id)
   require('lsp-status/util').ensure_init(messages, id, 'pylance')
 end
 
--- XXX: Seems like these callbacks are never called.
-local callbacks =  {
+-- XXX: Seems like these handlers are never called.
+local handlers =  {
   ['pyright/beginProgress'] = function(_, _, _, client_id)
     ensure_init(client_id)
     if not messages[client_id].progress[1] then
@@ -106,7 +106,7 @@ local function setup()
     default_config = {
       cmd = {'node', get_script_path(), '--stdio'},
       filetypes = {'python'},
-      callbacks = callbacks,
+      handlers = handlers,
       root_dir = root_dir,
       settings = {
         python = {
@@ -129,6 +129,6 @@ local M = {
   setup = setup
 }
 
-M = vim.tbl_extend('error', M, callbacks)
+M = vim.tbl_extend('error', M, handlers)
 
 return M
