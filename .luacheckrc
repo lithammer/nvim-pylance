@@ -11,6 +11,7 @@ stds.vim = {
         },
         fn = {
           fields = {
+            "empty",
             "executable",
             "exepath",
             "expand",

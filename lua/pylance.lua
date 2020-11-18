@@ -1,7 +1,6 @@
 local configs = require('lspconfig/configs')
 local util = require('lspconfig/util')
 
-local executable = vim.fn.executable
 local exepath = vim.fn.exepath
 local expand =  vim.fn.expand
 local glob = vim.fn.glob
@@ -12,6 +11,9 @@ local nvim_command = vim.api.nvim_command
 
 local path = util.path
 
+-- Vim API wrappers.
+local function empty(expr) return vim.fn.empty(expr) == 1 end
+
 local messages = {}
 local function init(_messages, _)
   messages = _messages
@@ -21,7 +23,6 @@ local function ensure_init(id)
   require('lsp-status/util').ensure_init(messages, id, 'pylance')
 end
 
--- XXX: Seems like these handlers are never called.
 local handlers =  {
   ['pyright/beginProgress'] = function(_, _, _, client_id)
     ensure_init(client_id)
@@ -62,23 +63,23 @@ local function get_python_path(workspace)
   -- 2. Find and use virtualenv in workspace directory.
   for _, pattern in ipairs({'*', '.*'}) do
     local match = glob(path.join(workspace, pattern, 'pyvenv.cfg'))
-    if match ~= '' then
+    if empty(match) then
       return path.join(path.dirname(match), 'bin', 'python')
     end
   end
 
   -- 3. Find and use virtualenv managed by Poetry.
-  if executable('poetry') == 1 then
+  if util.has_bins('poetry') and path.is_file(path.join(workspace, 'poetry.lock')) then
     local output = trim(system('poetry env info -p'))
-    if path.is_absolute(output) then
+    if path.is_dir(output) then
       return path.join(output, 'bin', 'python')
     end
   end
 
   -- 4. Find and use virtualenv managed by Pipenv.
-  if executable('pipenv') == 1 then
-    local output = trim(system('pipenv --py'))
-    if path.is_absolute(output) then
+  if util.has_bins('pipenv') and path.is_file(path.join(workspace, 'Pipfile')) then
+    local output = trim(system('cd ' .. workspace .. '; pipenv --py'))
+    if path.is_dir(output) then
       return output
     end
   end
