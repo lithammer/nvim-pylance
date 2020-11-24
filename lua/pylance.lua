@@ -63,7 +63,7 @@ local function get_python_path(workspace)
   -- 2. Find and use virtualenv in workspace directory.
   for _, pattern in ipairs({'*', '.*'}) do
     local match = glob(path.join(workspace, pattern, 'pyvenv.cfg'))
-    if empty(match) then
+    if not empty(match) then
       return path.join(path.dirname(match), 'bin', 'python')
     end
   end
