@@ -1,7 +1,6 @@
 local configs = require('lspconfig/configs')
 local util = require('lspconfig/util')
 
-local exepath = vim.fn.exepath
 local expand =  vim.fn.expand
 local glob = vim.fn.glob
 local system = vim.fn.system
@@ -13,6 +12,10 @@ local path = util.path
 
 -- Vim API wrappers.
 local function empty(expr) return vim.fn.empty(expr) == 1 end
+local function exepath(expr)
+  local ep = vim.fn.exepath(expr)
+  return ep ~= '' and ep or nil
+end
 
 local messages = {}
 local function init(_messages, _)
