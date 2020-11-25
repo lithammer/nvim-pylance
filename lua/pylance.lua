@@ -117,12 +117,11 @@ local function setup()
           analysis = vim.empty_dict()
         }
       },
-      -- https://github.com/neovim/nvim-lspconfig/issues/299#issuecomment-689592769
-      before_init = function(initialize_params, config)
-        initialize_params['workspaceFolders'] = {
-          {name = 'workspace', uri = initialize_params['rootUri']}
-        }
-        config.settings.python.pythonPath = get_python_path(config.root_dir)
+      before_init = function(_, config)
+        if not config.settings.python then config.settings.python = {} end
+        if not config.settings.python.pythonPath then
+          config.settings.python.pythonPath = get_python_path(config.root_dir)
+        end
       end
     }
   }
