@@ -6,7 +6,8 @@ Adds support for [Pylance](https://github.com/microsoft/pylance-release) to
 ## Important note!
 
 As of the 2020.10.3 release of Pylance it's no longer possible to run it in
-a stand-alone fashion as you will only get prompted with this license notice:
+a stand-alone fashion as you will only get prompted with this license notice
+below. Because of this, I've decided to archive this repo indefinitely.
 
 > You may install and use any number of copies of the software only with
 > Microsoft Visual Studio, Visual Studio for Mac, Visual Studio Code, Azure
