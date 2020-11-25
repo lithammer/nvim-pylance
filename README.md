@@ -56,11 +56,11 @@ call packager#add('lithammer/nvim-pylance')
 ```
 
 ```lua
-local nvim_lsp = require('nvim_lsp')
+local lspconfig = require('lspconfig')
 local pylance = require('pylance')
 
 pylance.setup()
-nvim_lsp.pylance.setup({
+lspconfig.pylance.setup({
   -- https://github.com/microsoft/pylance-release#settings-and-customization
   settings = {
     python = {
